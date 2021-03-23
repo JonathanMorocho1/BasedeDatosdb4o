@@ -9,12 +9,13 @@ import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author ANDRES
  */
 public class FormularioPersona extends javax.swing.JFrame {
-
+    
     ControladorPersona controlador;
     
     public FormularioPersona() {
@@ -51,7 +52,7 @@ public class FormularioPersona extends javax.swing.JFrame {
             if (insertado == true) {
                 JOptionPane.showMessageDialog(rootPane, "Datos guardados");
                 this.Limpiar();
-                tbPersonas.setModel(this.controlador.personas());
+                //tbPersonas.setModel(this.controlador.personas());
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Algo falló al insertar");
             }
@@ -67,7 +68,7 @@ public class FormularioPersona extends javax.swing.JFrame {
             if (eliminado == true) {
                 JOptionPane.showMessageDialog(rootPane, "Datos eliminados");
                 this.Limpiar();
-                tbPersonas.setModel(this.controlador.personas());
+                //tbPersonas.setModel(this.controlador.personas());
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Algo falló al eliminar");
             }
@@ -75,7 +76,10 @@ public class FormularioPersona extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "El valor introducido no es un número");
         }
     }
-    
+       
+    void ActualizarTabla(){
+       tbPersonas.setModel(this.controlador.personas()); 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +104,7 @@ public class FormularioPersona extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPersonas = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,6 +201,13 @@ public class FormularioPersona extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbPersonas);
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,19 +218,20 @@ public class FormularioPersona extends javax.swing.JFrame {
                         .addGap(80, 80, 80)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnGuardar)
                                 .addGap(42, 42, 42)
                                 .addComponent(btnEliminar)
                                 .addGap(42, 42, 42)
                                 .addComponent(btnLimpiar)
-                                .addGap(33, 33, 33))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jLabel1)))
+                                .addGap(29, 29, 29)
+                                .addComponent(jButton1))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -232,7 +245,8 @@ public class FormularioPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
@@ -255,6 +269,11 @@ public class FormularioPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
         Limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ActualizarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +314,7 @@ public class FormularioPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

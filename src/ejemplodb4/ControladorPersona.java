@@ -46,5 +46,10 @@ public class ControladorPersona extends conexion {
             return false;
         }
     }
+    
+    public boolean actualizarPersona(int id, String nombre, String apellidos) {
+        Persona personaNueva = new Persona(nombre, apellidos, id);        
+        return this.ActualizarPersona(personaNueva);
+    }
 
 }
